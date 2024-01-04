@@ -1,6 +1,6 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import contactsReducer from "./contactsSlice";
-import filtersSlice from "./filtersSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import contactsReducer from './contactsSlice';
+import filtersSlice from './filtersSlice';
 import {
   persistStore,
   persistReducer,
@@ -21,15 +21,11 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  filter: filtersSlice,
-})
-
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    rootReducer,
+    contacts: contactsReducer,
+    filter: filtersSlice,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
